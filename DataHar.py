@@ -255,7 +255,10 @@ def videos_table():
       for i in range(len(vi_data["video_information"])):
           vi_list.append(vi_data["video_information"][i])
   df2=pd.DataFrame(vi_list)
-
+  df2['Duration']=pd.to_timedelta(df2['Duration'])
+  df2['Duration'] = df2['Duration'].astype(str)
+  df2['Duration']=[i[-1] for i in (df2['Duration'].str.split())]
+    
 
 
 
@@ -267,24 +270,6 @@ def videos_table():
     
     
   mydb.commit()
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
 
 
 
@@ -607,23 +592,15 @@ elif question=="9. Videos with highest number of comments":
     st.write(df9)
 
 
-
 elif question=="10. Average duration of all videos in each channels":
     query10='''select channel_name as channelname,AVG(duration) as averageduration from videos group by channel_name'''
     mycursor.execute(query10)
     mydb.commit()
     t10=mycursor.fetchall()
     df10=pd.DataFrame(t10,columns=["channelname","averageduration"])
-    df10
-    
-    T10=[]
-    for index,row in df10.iterrows():
-        channel_title=row['channelname']
-        average_duration==row['averageduration']
-        average_duration_str=str(average_duration)
-        T10.append(dict(channeltitle=channel_title,avgduration=average_duration_str))
-    df0=pd.DataFrame(T10)
-    st.write(df0)
+    st.write(df10)
+
+
 
 
 
