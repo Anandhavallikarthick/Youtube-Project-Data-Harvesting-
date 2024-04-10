@@ -13,3 +13,11 @@ STEP5:
 STEP6:
   Ability to search and retrieve data from the SQL database using different search options, including joining tables to get channel details.
 Approach: 
+
+Features
+
+Retrieve data from the YouTube API, including channel information, playlists, videos, and comments.
+Migrate the data to a MySQL data warehouse.
+Analyze and visualize data using Streamlit and Plotly.
+Perform queries on the MySQL data warehouse.
+Display the list of channel name's along with subcription & view's count.
